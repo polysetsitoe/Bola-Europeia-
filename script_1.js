@@ -9,7 +9,7 @@ const CONFIG = {
         BASE_URL: 'https://api.football-data.org/v4',
         // Para demonstração, usaremos dados simulados
         // Em produção, você substituiria por uma API real
-        USE_MOCK_DATA: true
+        USE_MOCK_DATA: false
     }
 };
 
