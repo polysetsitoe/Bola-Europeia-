@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futebol ao Vivo - BSoccer Style</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-futbol"></i>
+                    <span>Futebol ao Vivo</span>
+                </div>
+                <div class="header-actions">
+                    <button class="refresh-btn" id="refresh-btn">
+                        <i class="fas fa-sync-alt" id="refresh-icon"></i>
+                    </button>
+                    <div class="last-update">
+                        <span id="last-update-time">Carregando...</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-tab="live">
+                <i class="fas fa-play-circle"></i>
+                <span>Ao Vivo</span>
+            </button>
+            <button class="nav-tab" data-tab="upcoming">
+                <i class="fas fa-clock"></i>
+                <span>Próximos</span>
+            </button>
+            <button class="nav-tab" data-tab="results">
+                <i class="fas fa-check-circle"></i>
+                <span>Resultados</span>
+            </button>
+        </nav>
+
+        <!-- Date Filter -->
+        <div class="date-filter">
+            <button class="date-btn" data-date="yesterday">Ontem</button>
+            <button class="date-btn active" data-date="today">Hoje</button>
+            <button class="date-btn" data-date="tomorrow">Amanhã</button>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Loading -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Carregando resultados...</p>
+            </div>
+
+            <!-- Tab Contents -->
+            <div class="tab-content active" id="live-content">
+                <div class="matches-container" id="live-matches"></div>
+            </div>
+
+            <div class="tab-content" id="upcoming-content">
+                <div class="matches-container" id="upcoming-matches"></div>
+            </div>
+
+            <div class="tab-content" id="results-content">
+                <div class="matches-container" id="results-matches"></div>
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" id="error-message" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Erro ao carregar dados. Tentando novamente...</p>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="bottom-nav-btn active" data-section="matches">
+                <i class="fas fa-futbol"></i>
+                <span>Partidas</span>
+            </button>
+            <button class="bottom-nav-btn" data-section="competitions">
+                <i class="fas fa-trophy"></i>
+                <span>Competições</span>
+            </button>
+            <button class="bottom-nav-btn" data-section="favorites">
+                <i class="fas fa-star"></i>
+                <span>Favoritos</span>
+            </button>
+            <button class="bottom-nav-btn" data-section="more">
+                <i class="fas fa-bars"></i>
+                <span>Mais</span>
+            </button>
+        </nav>
+
+        <!-- Competitions Section -->
+        <div class="section-content" id="competitions-section" style="display: none;">
+            <div class="competitions-header">
+                <h2>Competições</h2>
+                <div class="competitions-filter">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                    <button class="filter-btn" data-filter="national">Nacionais</button>
+                    <button class="filter-btn" data-filter="international">Internacionais</button>
+                </div>
+            </div>
+            <div class="competitions-list" id="competitions-list"></div>
+        </div>
+
+        <!-- Favorites Section -->
+        <div class="section-content" id="favorites-section" style="display: none;">
+            <div class="favorites-header">
+                <h2>Favoritos</h2>
+                <p>Adicione suas equipes e competições favoritas</p>
+            </div>
+            <div class="favorites-list" id="favorites-list"></div>
+        </div>
+
+        <!-- More Section -->
+        <div class="section-content" id="more-section" style="display: none;">
+            <div class="more-options">
+                <h2>Mais Opções</h2>
+                <div class="option-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurações</span>
+                </div>
+                <div class="option-item">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Sobre</span>
+                </div>
+                <div class="option-item">
+                    <i class="fas fa-share"></i>
+                    <span>Compartilhar</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Match Detail Modal -->
+    <div class="modal" id="match-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Detalhes da Partida</h3>
+                <button class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Match details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
